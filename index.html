@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diana Amriyeva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Background canvas -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" id="closeMenu">✕</button>
+    <a href="#works">works</a>
+    <a href="#about">about</a>
+    <a href="#">art portfolio</a>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="logo"><span class="logo-sq"></span>D.A.</a>
+    <div class="nav-links">
+      <a href="#works">works</a>
+      <a href="#about">about</a>
+      <a href="#">art portfolio</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <h1 class="hero-name">Diana Amriyeva</h1>
+    <p class="hero-bio">Multidisciplinary designer, artist and developer based in Toronto and Almaty.</p>
+    <div class="scroll-arrow" aria-hidden="true"></div>
+  </section>
+
+  <!-- WORKS -->
+  <section class="works" id="works">
+    <h2 class="section-title reveal">Selected Work</h2>
+    <div class="work-image-wrap reveal">
+      <!-- Replace inner div with <img src="your-image.jpg" alt="ErgoScan"> once you have the asset -->
+      <div class="work-placeholder">
+        <div class="phone back"></div>
+        <div class="phone">ErgoScan</div>
+      </div>
+    </div>
+    <p class="work-desc reveal">Creating, designing and developing an app that helps to analyze and improve workspace ergonomics.</p>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <footer>
+    <h2 class="contact-title reveal">Contact</h2>
+    <div class="footer-grid reveal">
+      <div class="footer-left">
+        <div class="f-logo"><span class="logo-sq"></span>D.A.</div>
+        <a href="mailto:diana.amriyeva@gmail.com" class="f-email">diana.amriyeva@gmail.com</a>
+      </div>
+      <div class="footer-right">
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+        <a href="#">Behance</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 Diana Amriyeva. All rights reserved.</div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
