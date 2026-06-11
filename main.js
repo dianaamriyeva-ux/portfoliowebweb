@@ -1,51 +1,49 @@
 /* ═══════════════════════════════════════════════════════════════
-   ASCII GRADIENT BACKGROUND
-   Blob field → downscaled to grid resolution → one averaged
-   pixel per cell → clean luminance → ASCII character mapping
+   ASCII GRADIENT BACKGROUND  — high quality
 ═══════════════════════════════════════════════════════════════ */
-
 (function () {
 
-  /* ─── two canvases ─── */
-  const offscreen = document.createElement('canvas'); // blob field (full-res)
-  const off       = offscreen.getContext('2d');
+  const ascii = document.getElementById('bgCanvas');
+  const ctx   = ascii.getContext('2d', { willReadFrequently: true });
 
-  const ascii = document.getElementById('bgCanvas');  // final ASCII output
-  const ctx   = ascii.getContext('2d');
+  /* offscreen blob canvas — drawn at GRID resolution, not screen res.
+     This means every pixel in the blob canvas = exactly one ASCII cell,
+     so there is zero resampling error.                                  */
+  const blob    = document.createElement('canvas');
+  const blobCtx = blob.getContext('2d');
 
-  /* tiny canvas: exactly cols×rows pixels, one per cell */
-  const small    = document.createElement('canvas');
-  const smallCtx = small.getContext('2d', { willReadFrequently: true });
+  /* ── ASCII ramp: index 0 = darkest, last = brightest ── */
+  const RAMP      = ' .:-=+*#%@';   /* shorter ramp = cleaner steps  */
+  const FONT_SIZE = 13;                   /* px — increase for bigger chars */
+  const FONT_FACE = '"Courier New", Courier, monospace';
 
-  /* ASCII ramp: space = darkest, $ = brightest */
-  const RAMP      = ' .\'`^",:;Il!i><~+_-?][}{1)(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$';
-  const FONT_SIZE = 11;
-  const FONT_FACE = 'monospace';
+  /* measure exact character cell dimensions once */
+  ctx.font = `${FONT_SIZE}px ${FONT_FACE}`;
+  const CHAR_W = ctx.measureText('M').width;   /* monospace: all same width */
+  const CHAR_H = FONT_SIZE * 1.2;              /* line height with a touch of leading */
 
   let cols = 0, rows = 0;
 
   function resize() {
-    ascii.width      = window.innerWidth;
-    ascii.height     = window.innerHeight;
-    offscreen.width  = window.innerWidth;
-    offscreen.height = window.innerHeight;
-    cols = Math.floor(ascii.width  / (FONT_SIZE * 0.6));
-    rows = Math.floor(ascii.height / FONT_SIZE);
+    ascii.width  = window.innerWidth;
+    ascii.height = window.innerHeight;
+    cols = Math.floor(ascii.width  / CHAR_W);
+    rows = Math.floor(ascii.height / CHAR_H);
+    blob.width  = cols;
+    blob.height = rows;
   }
   window.addEventListener('resize', resize);
   resize();
 
   /* ── Blobs ── */
-  const NUM_BLOBS = 7;
+  const NUM_BLOBS = 6;
   const blobs = Array.from({ length: NUM_BLOBS }, () => ({
-    x:          Math.random(),
-    y:          Math.random(),
-    r:          0.22 + Math.random() * 0.28,
-    speedX:     (Math.random() - 0.5) * 0.00012,
-    speedY:     (Math.random() - 0.5) * 0.00012,
-    noiseOffX:  Math.random() * 100,
-    noiseOffY:  Math.random() * 100,
-    brightness: 0.08 + Math.random() * 0.14,
+    x: Math.random(), y: Math.random(),
+    r: 0.25 + Math.random() * 0.30,
+    speedX: (Math.random() - 0.5) * 0.00014,
+    speedY: (Math.random() - 0.5) * 0.00014,
+    ox: Math.random() * 100, oy: Math.random() * 100,
+    brightness: 0.10 + Math.random() * 0.18,
   }));
 
   /* value noise */
@@ -58,131 +56,136 @@
     const X = Math.floor(x) & 255, Y = Math.floor(y) & 255;
     x -= Math.floor(x); y -= Math.floor(y);
     const u = fade(x), v = fade(y);
-    const a = P[X] + Y, b = P[X + 1] + Y;
+    const a = P[X] + Y,  b = P[X + 1] + Y;
     return lerp(
-      lerp(grad(P[a],     x,     y),     grad(P[b],     x - 1, y),     u),
-      lerp(grad(P[a + 1], x,     y - 1), grad(P[b + 1], x - 1, y - 1), u),
-      v
-    );
+      lerp(grad(P[a],     x,     y),     grad(P[b],     x-1, y),     u),
+      lerp(grad(P[a + 1], x,     y - 1), grad(P[b + 1], x-1, y - 1), u), v);
   }
 
   let t = 0;
 
-  /* ── Draw blobs onto offscreen canvas ── */
+  /* ── Draw blobs at GRID size (cols × rows px) ──
+     Each output pixel = the average colour of one ASCII cell.
+     No resampling needed later.                              */
   function drawBlobs() {
-    const W = offscreen.width, H = offscreen.height;
-    off.fillStyle = '#000';
-    off.fillRect(0, 0, W, H);
+    const W = blob.width, H = blob.height;
+    blobCtx.fillStyle = '#000';
+    blobCtx.fillRect(0, 0, W, H);
 
     for (const b of blobs) {
-      const nx = noise2(b.noiseOffX + t * 0.18, b.noiseOffY);
-      const ny = noise2(b.noiseOffX, b.noiseOffY + t * 0.18);
-      b.x += b.speedX + nx * 0.00008;
-      b.y += b.speedY + ny * 0.00008;
-
+      const nx = noise2(b.ox + t * 0.16, b.oy);
+      const ny = noise2(b.ox, b.oy + t * 0.16);
+      b.x += b.speedX + nx * 0.00007;
+      b.y += b.speedY + ny * 0.00007;
       if (b.x < -b.r) b.x = 1 + b.r;
       if (b.x > 1 + b.r) b.x = -b.r;
       if (b.y < -b.r) b.y = 1 + b.r;
       if (b.y > 1 + b.r) b.y = -b.r;
 
-      const cx     = b.x * W;
-      const cy     = b.y * H;
-      const radius = b.r * Math.max(W, H);
-      const lv     = Math.round(b.brightness * 255);
-      const col    = `rgb(${lv},${lv},${lv})`;
+      const cx = b.x * W, cy = b.y * H;
+      const r  = b.r * Math.max(W, H);
+      const lv = Math.round(b.brightness * 255);
+      const cs = `rgb(${lv},${lv},${lv})`;
 
-      const g = off.createRadialGradient(cx, cy, 0, cx, cy, radius);
-      g.addColorStop(0,   col);
-      g.addColorStop(0.5, `rgba(${lv},${lv},${lv},0.25)`);
+      const g = blobCtx.createRadialGradient(cx, cy, 0, cx, cy, r);
+      g.addColorStop(0,   cs);
+      g.addColorStop(0.45, `rgba(${lv},${lv},${lv},0.3)`);
       g.addColorStop(1,   'rgba(0,0,0,0)');
 
-      off.globalCompositeOperation = 'lighter';
-      off.beginPath();
-      off.arc(cx, cy, radius, 0, Math.PI * 2);
-      off.fillStyle = g;
-      off.fill();
-      off.globalCompositeOperation = 'source-over';
+      blobCtx.globalCompositeOperation = 'lighter';
+      blobCtx.beginPath();
+      blobCtx.arc(cx, cy, r, 0, Math.PI * 2);
+      blobCtx.fillStyle = g;
+      blobCtx.fill();
+      blobCtx.globalCompositeOperation = 'source-over';
     }
   }
 
-  /* ── ASCII render pass ──
-     Key fix: downscale the full-res offscreen canvas to exactly
-     cols×rows with one drawImage call. The browser's built-in
-     bilinear downscaling averages every pixel in each cell, so
-     each ASCII character reflects the true mean brightness of
-     that region — no single-pixel sampling noise.
-  */
+  /* ── Pre-build 64 fillStyle strings (alpha LUT) ──
+     Avoids constructing a new string on every cell every frame.
+     Index 0 = fully transparent, 63 = max opacity (capped at 0.6). */
+  const ALPHA_LEVELS = 64;
+  const ALPHA_LUT = Array.from({ length: ALPHA_LEVELS }, (_, i) => {
+    const a = ((i / (ALPHA_LEVELS - 1)) * 0.6).toFixed(3);
+    return `rgba(240,237,230,${a})`;
+  });
+
+  /* ── ASCII render ──
+     Read directly from the cols×rows blob canvas.
+     pixel[col, row] == brightness of that ASCII cell. Exact. */
   function renderASCII() {
-    const W  = ascii.width;
-    const H  = ascii.height;
-    const cw = W / cols;
-    const ch = H / rows;
+    const { data: sd } = blobCtx.getImageData(0, 0, cols, rows);
 
-    /* resize small canvas only when grid dimensions change */
-    if (small.width !== cols || small.height !== rows) {
-      small.width  = cols;
-      small.height = rows;
-    }
-
-    /* downscale: 1920×1080 → ~213×90 in one fast GPU-accelerated call */
-    smallCtx.drawImage(offscreen, 0, 0, cols, rows);
-    const { data: sd } = smallCtx.getImageData(0, 0, cols, rows);
-
-    /* clear output */
     ctx.fillStyle = '#080808';
-    ctx.fillRect(0, 0, W, H);
+    ctx.fillRect(0, 0, ascii.width, ascii.height);
+
     ctx.font         = `${FONT_SIZE}px ${FONT_FACE}`;
-    ctx.textBaseline = 'top';
+    ctx.textBaseline = 'middle';
+    ctx.textAlign    = 'left';
 
     for (let row = 0; row < rows; row++) {
+      const y = row * CHAR_H + CHAR_H * 0.5;
       for (let col = 0; col < cols; col++) {
         const idx = (row * cols + col) * 4;
+        /* Rec.709 luminance */
+        const lum = (sd[idx] * 0.2126 + sd[idx+1] * 0.7152 + sd[idx+2] * 0.0722) / 255;
 
-        /* perceived luminance (Rec.709 coefficients) */
-        const lum = (sd[idx] * 0.2126 + sd[idx + 1] * 0.7152 + sd[idx + 2] * 0.0722) / 255;
+        if (lum < 0.015) continue;
 
-        if (lum < 0.012) continue; /* black cell — draw nothing */
-
-        /* map luminance to character — gamma-expand slightly so
-           mid-tones spread across more of the ramp */
-        const gamma   = Math.pow(lum, 0.5);
+        /* gamma curve so mid-tones spread across the ramp */
+        const gamma   = Math.pow(lum, 0.6);
         const charIdx = Math.min(Math.floor(gamma * (RAMP.length - 1)), RAMP.length - 1);
-        const char    = RAMP[charIdx];
-        if (char === ' ') continue;
+        const ch      = RAMP[charIdx];
+        if (ch === ' ') continue;
 
-        /* opacity scales with brightness, capped and darkened 40% */
-        const alpha = Math.min(1, lum * 5.5) * 0.2;
-        ctx.fillStyle = `rgba(240,237,230,${alpha.toFixed(3)})`;
-        ctx.fillText(char, col * cw, row * ch);
+        /* look up pre-built alpha string — zero string allocations */
+        const alphaIdx = Math.min(Math.floor(Math.min(lum * 6, 1) * (ALPHA_LEVELS - 1)), ALPHA_LEVELS - 1);
+        ctx.fillStyle  = ALPHA_LUT[alphaIdx];
+        ctx.fillText(ch, col * CHAR_W, y);
       }
     }
   }
 
-  /* ── main loop ── */
-  function loop() {
+  /* ── 30 fps cap ──
+     rAF fires at ~60fps. We skip frames where less than 33ms
+     has elapsed since the last render, halving the CPU/GPU load. */
+  const FPS      = 30;
+  const INTERVAL = 1000 / FPS;
+  let lastTime   = 0;
+
+  function loop(now) {
+    requestAnimationFrame(loop);
+    if (now - lastTime < INTERVAL) return;
+    lastTime = now - ((now - lastTime) % INTERVAL);
     drawBlobs();
     renderASCII();
     t++;
-    requestAnimationFrame(loop);
   }
 
-  loop();
+  requestAnimationFrame(loop);
 
 })();
 
 
 /* ═══════════════════════════════════════════════
-   CUSTOM CURSOR
+   CUSTOM CURSOR — desktop only
 ═══════════════════════════════════════════════ */
 (function () {
+  /* touch devices don't need a custom cursor */
+  const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  if (isTouch) return;
+
   const cursor = document.getElementById('cursor');
   const ring   = document.getElementById('cursorRing');
   let mx = window.innerWidth / 2, my = window.innerHeight / 2;
   let rx = mx, ry = my;
 
+  /* show elements now that we know it's a pointer device */
+  cursor.style.display = 'block';
+  ring.style.display   = 'block';
+
   document.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
+    mx = e.clientX; my = e.clientY;
     cursor.style.left = mx + 'px';
     cursor.style.top  = my + 'px';
   });
@@ -199,6 +202,34 @@
     el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
   });
+})();
+
+
+/* ═══════════════════════════════════════════════
+   SCROLL ARROW — fade out on scroll, fade back in at top
+═══════════════════════════════════════════════ */
+(function () {
+  const arrow = document.querySelector('.scroll-arrow');
+  if (!arrow) return;
+
+  let hidden = false;
+  let ready  = false; // don't trigger before the initial appear animation finishes
+
+  setTimeout(() => { ready = true; }, 1600); // matches arrowAppear delay + duration
+
+  window.addEventListener('scroll', () => {
+    if (!ready) return;
+    const shouldHide = window.scrollY > 40;
+    if (shouldHide === hidden) return;
+    hidden = shouldHide;
+    if (hidden) {
+      arrow.classList.remove('visible');
+      arrow.classList.add('hidden');
+    } else {
+      arrow.classList.remove('hidden');
+      arrow.classList.add('visible');
+    }
+  }, { passive: true });
 })();
 
 
@@ -225,6 +256,5 @@
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
-
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 })();

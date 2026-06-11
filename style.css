@@ -43,6 +43,7 @@ nav, .mobile-menu, .hero, .works, footer, .cursor, .cursor-ring {
    CUSTOM CURSOR
 ───────────────────────────────────────── */
 .cursor {
+  display: none; /* shown by JS on pointer devices only */
   position: fixed;
   width: 8px;
   height: 8px;
@@ -59,6 +60,7 @@ nav, .mobile-menu, .hero, .works, footer, .cursor, .cursor-ring {
   height: 36px;
 }
 .cursor-ring {
+  display: none; /* shown by JS on pointer devices only */
   position: fixed;
   width: 38px;
   height: 38px;
@@ -87,7 +89,7 @@ nav {
 .logo {
   font-family: var(--font);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.06em;
   display: flex;
   align-items: center;
@@ -215,10 +217,29 @@ nav {
   border-left: 9px solid transparent;
   border-right: 9px solid transparent;
   border-top: 10px solid var(--fg);
-  opacity: 0.5;
-  animation: fadeUpSimple 1s ease 0.55s both, bounce 2.2s ease-in-out 1.6s infinite;
+  opacity: 0;
+  animation: arrowAppear 1s ease 0.55s forwards, bounce 2.2s ease-in-out 1.6s infinite;
 }
-
+.scroll-arrow.hidden {
+  animation: arrowFadeOut 0.5s ease forwards;
+  pointer-events: none;
+}
+.scroll-arrow.visible {
+  animation: arrowFadeIn 0.5s ease forwards, bounce 2.2s ease-in-out infinite;
+}
+@keyframes arrowAppear {
+  from { opacity: 0; transform: translateX(-50%) translateY(6px); }
+  to   { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+}
+@keyframes arrowFadeOut {
+  from { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+  to   { opacity: 0;   transform: translateX(-50%) translateY(6px); }
+}
+@keyframes arrowFadeIn {
+  from { opacity: 0;   transform: translateX(-50%) translateY(6px); }
+  to   { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+}
+ 
 @keyframes fadeUpSimple {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
