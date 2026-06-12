@@ -97,12 +97,6 @@ nav {
   text-decoration: none;
   color: var(--fg);
 }
-.logo-sq {
-  width: 13px;
-  height: 13px;
-  background: var(--fg);
-  flex-shrink: 0;
-}
 
 .nav-links {
   display: flex;
@@ -114,10 +108,11 @@ nav {
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.07em;
-  opacity: 0.7;
+  opacity: 1;
   transition: opacity 0.2s;
 }
 .nav-links a:hover { opacity: 1; }
+.nav-links a.nav-active { opacity: 1; }
 
 /* Hamburger */
 .hamburger {
@@ -159,7 +154,7 @@ nav {
   letter-spacing: 0.14em;
   color: var(--fg);
   text-decoration: none;
-  opacity: 0.85;
+  opacity: 1;
   transition: opacity 0.2s;
 }
 .mobile-menu a:hover { opacity: 1; }
@@ -202,7 +197,7 @@ nav {
   font-size: clamp(13px, 1.4vw, 16px);
   font-weight: 300;
   line-height: 1.8;
-  opacity: 0.7;
+  opacity: 1;
   max-width: 500px;
   letter-spacing: 0.02em;
   animation: fadeUpSimple 1s ease 0.3s both;
@@ -239,7 +234,7 @@ nav {
   from { opacity: 0;   transform: translateX(-50%) translateY(6px); }
   to   { opacity: 0.5; transform: translateX(-50%) translateY(0); }
 }
- 
+
 @keyframes fadeUpSimple {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -252,6 +247,9 @@ nav {
 /* ─────────────────────────────────────────
    WORKS
 ───────────────────────────────────────── */
+/* ─────────────────────────────────────────
+   WORKS — staggered two-column grid
+───────────────────────────────────────── */
 .works {
   padding: 80px 48px 100px;
 }
@@ -262,63 +260,115 @@ nav {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 44px;
+  margin-bottom: 60px;
 }
 
-.work-image-wrap {
+.works-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Each row is a two-column flex pair */
+.works-row {
+  display: grid;
+  grid-template-columns: 5fr 8fr;
+  gap: 32px;
+  align-items: start;
+}
+.works-row--flip {
+  grid-template-columns: 8fr 5fr;
+}
+
+/* Individual card */
+.work-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.work-image {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: #0e0e0e;
-  margin-bottom: 32px;
 }
-.work-image-wrap img {
+.work-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.7s ease;
 }
-.work-image-wrap:hover img { transform: scale(1.03); }
+.work-image:hover img { transform: scale(1.03); }
 
-/* Placeholder */
+/* Placeholder phones */
 .work-placeholder {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
 }
 .phone {
-  width: 88px;
-  height: 160px;
+  width: 72px;
+  height: 130px;
   border: 1.5px solid #333;
-  border-radius: 14px;
+  border-radius: 12px;
   background: #5c5cf5;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
-  letter-spacing: 0.06em;
+  font-size: 8px;
+  letter-spacing: 0.05em;
   color: #fff;
-  box-shadow: 0 0 40px rgba(92, 92, 245, 0.22);
+  box-shadow: 0 0 30px rgba(92, 92, 245, 0.2);
 }
 .phone.back {
-  height: 130px;
+  height: 108px;
   background: #2e2e2e;
   box-shadow: none;
   opacity: 0.5;
-  margin-top: 28px;
+  margin-top: 22px;
+}
+
+.work-title {
+  font-size: clamp(14px, 1.3vw, 17px);
+  font-weight: 500;
+  letter-spacing: 0.03em;
 }
 
 .work-desc {
-  font-size: clamp(13px, 1.2vw, 15px);
+  font-size: clamp(12px, 1.1vw, 14px);
   font-weight: 300;
-  line-height: 1.85;
-  opacity: 0.65;
-  max-width: 760px;
+  line-height: 1.8;
+  opacity: 1;
   letter-spacing: 0.02em;
+}
+
+/* "see all works" button */
+.works-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+}
+.btn-see-all {
+  display: inline-block;
+  border: 1px solid var(--fg);
+  padding: 13px 36px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: var(--fg);
+  text-decoration: none;
+  border-radius: 40px;
+  transition: background 0.25s, color 0.25s;
+}
+.btn-see-all:hover {
+  background: var(--fg);
+  color: var(--bg);
 }
 
 /* ─────────────────────────────────────────
@@ -346,21 +396,12 @@ footer {
   margin-bottom: 80px;
 }
 
-.footer-left .f-logo {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  margin-bottom: 14px;
-}
 .footer-left .f-email {
   font-size: 13px;
   font-weight: 300;
   color: var(--fg);
   text-decoration: none;
-  opacity: 0.65;
+  opacity: 1;
   letter-spacing: 0.03em;
   transition: opacity 0.2s;
 }
@@ -377,7 +418,7 @@ footer {
   font-weight: 300;
   color: var(--fg);
   text-decoration: none;
-  opacity: 0.65;
+  opacity: 1;
   letter-spacing: 0.06em;
   transition: opacity 0.2s;
 }
@@ -386,10 +427,19 @@ footer {
 .footer-copy {
   font-size: 11px;
   font-weight: 300;
-  opacity: 0.28;
+  opacity: 0.4;
   letter-spacing: 0.06em;
   border-top: 1px solid var(--border);
   padding-top: 24px;
+}
+
+/* ── FOOTER TAGLINE ── */
+.footer-tagline {
+  font-size: 13px;
+  font-weight: 300;
+  opacity: 1;
+  letter-spacing: 0.03em;
+  margin-bottom: 12px;
 }
 
 /* ─────────────────────────────────────────
@@ -408,6 +458,18 @@ footer {
 /* ─────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────── */
+/* ≤1200px: works grid collapses to single column, same-size images */
+@media (max-width: 1200px) {
+  .works-row,
+  .works-row--flip {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .work-image {
+    aspect-ratio: 16 / 10;
+  }
+}
+
 @media (max-width: 768px) {
   nav { padding: 18px 20px; }
   .nav-links { display: none; }
@@ -417,12 +479,66 @@ footer {
   .hero-name { letter-spacing: 0.08em; }
 
   .works { padding: 60px 20px 80px; }
+  .works-grid { gap: 40px; }
 
   footer { padding: 0 20px 40px; }
   .footer-grid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 28px;
     margin-bottom: 48px;
   }
   .footer-right { align-items: flex-start; }
+}
+
+/* ─────────────────────────────────────────
+   LOADING SCREEN
+───────────────────────────────────────── */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: #080808;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  /* background fades out as final step */
+  transition: opacity 0.8s ease;
+}
+.loader.bg-fade {
+  opacity: 0;
+}
+.loader.done {
+  display: none;
+}
+
+.loader-name {
+  font-size: clamp(36px, 7vw, 96px);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg);
+  white-space: nowrap;
+  transition: opacity 0.6s ease;
+}
+.loader-name.fade-out {
+  opacity: 0;
+}
+
+.loader-cursor {
+  font-size: clamp(36px, 7vw, 96px);
+  font-weight: 200;
+  color: var(--fg);
+  margin-left: 2px;
+  animation: blink 0.7s step-end infinite;
+  line-height: 1;
+  transition: opacity 0.3s ease;
+}
+.loader-cursor.hide {
+  opacity: 0;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }

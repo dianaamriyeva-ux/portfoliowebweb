@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Diana Amriyeva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="about.css" />
+</head>
+<body>
+
+  <canvas id="bgCanvas"></canvas>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" id="closeMenu">✕</button>
+    <a href="index.html">works</a>
+    <a href="about.html">about</a>
+    <a href="#">art portfolio</a>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="logo">DⱯNⱯ.A</a>
+    <div class="nav-links">
+      <a href="index.html">works</a>
+      <a href="about.html" class="nav-active">about</a>
+      <a href="#">art portfolio</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="about-main">
+
+    <!-- ── BIO + PHOTO ── -->
+    <section class="about-hero reveal">
+      <div class="about-left">
+        <div class="about-pixel"></div>
+        <p class="about-bio">
+          Hi there, I'm Diana. I'm currently a student at George Brown Polytechnic specializing in interaction design.
+        </p>
+        <p class="about-bio">
+          I believe that beauty and clarity cannot be separated. Design should be a living experience where brand and user meet and communicate. I approach design as a balance between logic and sensitivity, where every detail is intentional.
+        </p>
+
+        <div class="services">
+          <h2 class="services-title">Services</h2>
+          <ul class="services-list">
+            <li>Web Design</li>
+            <li>UX/UI Design</li>
+            <li>Product Design</li>
+            <li>Graphic Design</li>
+            <li>Motion Design</li>
+            <li>Front-End Dev</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="about-right">
+        <div class="about-photo">
+          <img src="img/portrait.png">
+        </div>
+
+        <div class="artist-callout reveal">
+          <p class="artist-text">Btw I'm also an artist, you can check my artworks on my second website :)</p>
+          <a href="#" class="btn-artworks">artworks</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CONTACT / FOOTER -->
+  <footer>
+    <h2 class="contact-title reveal">Contact</h2>
+    <div class="footer-grid reveal">
+      <div class="footer-left">
+        <p class="footer-tagline">Feel free to reach out :)</p>
+        <a href="mailto:diana.amriyeva@gmail.com" class="f-email">diana.amriyeva@gmail.com</a>
+      </div>
+      <div class="footer-right">
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+        <a href="#">Behance</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 Diana Amriyeva. All rights reserved.</div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

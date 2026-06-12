@@ -13,8 +13,8 @@
   const blobCtx = blob.getContext('2d');
 
   /* ── ASCII ramp: index 0 = darkest, last = brightest ── */
-  const RAMP      = ' .:-=+*#%@';   /* shorter ramp = cleaner steps  */
-  const FONT_SIZE = 13;                   /* px — increase for bigger chars */
+  const RAMP      = ' .:-=+*#';   /* shorter ramp = cleaner steps  */
+  const FONT_SIZE = 11;                   /* px — increase for bigger chars */
   const FONT_FACE = '"Courier New", Courier, monospace';
 
   /* measure exact character cell dimensions once */
@@ -43,7 +43,7 @@
     speedX: (Math.random() - 0.5) * 0.00014,
     speedY: (Math.random() - 0.5) * 0.00014,
     ox: Math.random() * 100, oy: Math.random() * 100,
-    brightness: 0.10 + Math.random() * 0.18,
+    brightness: 0.06 + Math.random() * 0.10,
   }));
 
   /* value noise */
@@ -106,7 +106,7 @@
      Index 0 = fully transparent, 63 = max opacity (capped at 0.6). */
   const ALPHA_LEVELS = 64;
   const ALPHA_LUT = Array.from({ length: ALPHA_LEVELS }, (_, i) => {
-    const a = ((i / (ALPHA_LEVELS - 1)) * 0.6).toFixed(3);
+    const a = ((i / (ALPHA_LEVELS - 1)) * 0.38).toFixed(3);
     return `rgba(240,237,230,${a})`;
   });
 
@@ -257,4 +257,55 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+
+
+/* ═══════════════════════════════════════════════
+   LOADING SCREEN — typewriter → text fade → bg fade
+═══════════════════════════════════════════════ */
+(function () {
+  const loader     = document.getElementById('loader');
+  const loaderName = document.getElementById('loaderName');
+  const loaderCur  = document.getElementById('loaderCursor');
+
+  if (!loader) return;
+
+  const FULL_TEXT   = 'DⱯNⱯ.A';
+  const TYPE_SPEED  = 80;   /* ms per character                  */
+  const PAUSE_AFTER = 700;  /* hold after fully typed            */
+  const TEXT_FADE   = 600;  /* duration of text fade-out         */
+  const BG_FADE     = 800;  /* duration of background fade-out   */
+  const GAP         = 100;  /* gap between text gone & bg starts */
+
+  let i = 0;
+
+  function typeNext() {
+    if (i <= FULL_TEXT.length) {
+      loaderName.textContent = FULL_TEXT.slice(0, i);
+      i++;
+      setTimeout(typeNext, TYPE_SPEED);
+    } else {
+      /* fully typed — pause, then fade out text */
+      setTimeout(fadeText, PAUSE_AFTER);
+    }
+  }
+
+  function fadeText() {
+    /* stop cursor blink and fade it with the text */
+    loaderCur.classList.add('hide');
+    loaderName.classList.add('fade-out');
+
+    /* once text is gone, fade the black background */
+    setTimeout(fadeBg, TEXT_FADE + GAP);
+  }
+
+  function fadeBg() {
+    loader.classList.add('bg-fade');
+
+    /* after bg fully transparent, remove from DOM */
+    setTimeout(() => loader.classList.add('done'), BG_FADE);
+  }
+
+  /* small delay so the canvas renders its first frame first */
+  setTimeout(typeNext, 200);
 })();
