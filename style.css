@@ -208,10 +208,7 @@ nav {
   position: absolute;
   bottom: 52px;
   left: 50%;
-  width: 0; height: 0;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-  border-top: 10px solid var(--fg);
+  font-size: 15px;
   opacity: 0;
   animation: arrowAppear 1s ease 0.55s forwards, bounce 2.2s ease-in-out 1.6s infinite;
 }

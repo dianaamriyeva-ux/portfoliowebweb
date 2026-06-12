@@ -13,7 +13,7 @@
   const blobCtx = blob.getContext('2d');
 
   /* ── ASCII ramp: index 0 = darkest, last = brightest ── */
-  const RAMP      = ' .:-=+*#';   /* shorter ramp = cleaner steps  */
+  const RAMP      = ' .:=+*#';   /* shorter ramp = cleaner steps  */
   const FONT_SIZE = 11;                   /* px — increase for bigger chars */
   const FONT_FACE = '"Courier New", Courier, monospace';
 
