@@ -89,13 +89,19 @@ nav {
 .logo {
   font-family: var(--font);
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.06em;
   display: flex;
   align-items: center;
   gap: 7px;
   text-decoration: none;
   color: var(--fg);
+}
+.logo-sq {
+  width: 13px;
+  height: 13px;
+  background: var(--fg);
+  flex-shrink: 0;
 }
 
 .nav-links {
@@ -185,7 +191,7 @@ nav {
 
 .hero-name {
   font-size: clamp(40px, 7.5vw, 100px);
-  font-weight: 400;
+  font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   line-height: 1.05;
@@ -208,7 +214,10 @@ nav {
   position: absolute;
   bottom: 52px;
   left: 50%;
-  font-size: 15px;
+  width: 0; height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 10px solid var(--fg);
   opacity: 0;
   animation: arrowAppear 1s ease 0.55s forwards, bounce 2.2s ease-in-out 1.6s infinite;
 }
@@ -253,7 +262,7 @@ nav {
 
 .section-title {
   font-size: clamp(13px, 1.3vw, 16px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   text-align: center;
@@ -377,7 +386,7 @@ footer {
 
 .contact-title {
   font-size: clamp(13px, 1.3vw, 16px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   text-align: center;
@@ -428,15 +437,6 @@ footer {
   letter-spacing: 0.06em;
   border-top: 1px solid var(--border);
   padding-top: 24px;
-}
-
-/* ── FOOTER TAGLINE ── */
-.footer-tagline {
-  font-size: 13px;
-  font-weight: 300;
-  opacity: 1;
-  letter-spacing: 0.03em;
-  margin-bottom: 12px;
 }
 
 /* ─────────────────────────────────────────
@@ -538,4 +538,33 @@ footer {
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
+}
+
+/* ── Work card links ── */
+.work-image-link {
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+}
+.work-image-link .work-image img,
+.work-image-link .work-image {
+  transition: transform 0.5s ease;
+}
+.work-image-link:hover .work-image {
+  transform: scale(1.03);
+}
+.work-title a {
+  color: var(--fg);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.work-title a:hover { opacity: 0.6; }
+
+/* footer tagline on project pages */
+.footer-tagline {
+  font-size: 13px;
+  font-weight: 300;
+  opacity: 0.5;
+  letter-spacing: 0.03em;
+  margin-bottom: 12px;
 }

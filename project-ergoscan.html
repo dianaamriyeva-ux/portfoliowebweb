@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ErgoScan — Diana Amriyeva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" id="closeMenu">✕</button>
+    <a href="index.html">works</a>
+    <a href="about.html">about</a>
+    <a href="#">art portfolio</a>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="logo"><span class="logo-sq"></span>D.A.</a>
+    <div class="nav-links">
+      <a href="index.html">works</a>
+      <a href="about.html">about</a>
+      <a href="#">art portfolio</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="project-main">
+
+    <!-- ── HERO ── -->
+    <div class="project-hero reveal">
+      <div class="project-hero-left">
+        <p class="project-tag">Description</p>
+        <h1 class="project-title">ErgoScan</h1>
+        <p class="project-subtitle">Creating, designing and developing an app that helps to analyze and improve workspace ergonomics.<br /><br />
+        ErgoScan is an iOS app that measures your workspace with AR and analyzes it with AI, so you can fix your setup yourself. No expert, no cost.</p>
+      </div>
+      <div class="project-meta">
+        <div class="meta-group">
+          <p class="meta-label">Year</p>
+          <p class="meta-value">2026</p>
+        </div>
+        <div class="meta-group">
+          <p class="meta-label">Disciplines</p>
+          <ul class="meta-list">
+            <li>Research</li>
+            <li>UX/UI Design</li>
+            <li>Motion Design</li>
+            <li>SwiftUI Development</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COVER ── -->
+    <div class="project-cover reveal">
+      <!-- Replace with: <img src="ergoscan-cover.jpg" alt="ErgoScan cover" /> -->
+      <div class="project-cover-placeholder">Cover image</div>
+    </div>
+
+    <!-- ── PREVIEW VIDEO ── -->
+    <div class="project-section reveal">
+      <h2 class="project-section-label">Preview</h2>
+      <div class="project-video-wrap">
+        <!--
+          To embed your YouTube video, replace YOUR_VIDEO_ID below:
+          e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ → id is dQw4w9WgXcQ
+        -->
+        <iframe
+          src="https://youtu.be/yYQ7H9uT0tk"
+          title="ErgoScan Preview"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          id="previewVideo">
+        </iframe>
+        <!-- Placeholder shown automatically if no valid video ID is set -->
+        <div class="video-placeholder" id="videoPlaceholder">
+          <div class="video-play-icon"></div>
+          <span>Video Preview</span>
+          <span style="font-size:11px;opacity:0.5;">Replace YOUR_VIDEO_ID in the HTML</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── THE PROBLEM ── -->
+    <div class="project-section reveal">
+      <h2 class="project-section-label">The Problem</h2>
+      <p class="project-body-text">Most people don't know their desk is hurting them. Many people spend 8+ hours a day at their desk. Without realizing it, they adjust to their setup, slouching a little more, straining a little further. The damage adds up.</p>
+      <div class="project-image" style="margin-top: 36px;">
+        <div class="project-image-placeholder">Problem diagram</div>
+      </div>
+    </div>
+
+    <!-- ── USER FLOW ── -->
+    <div class="project-section reveal">
+      <h2 class="project-section-label">User Flow</h2>
+      <div class="project-image">
+        <div class="project-image-placeholder">User flow diagram</div>
+      </div>
+    </div>
+
+    <!-- ── MEASUREMENT INTERACTION ── -->
+    <div class="project-section reveal">
+      <h2 class="project-section-label">Measurement Interaction</h2>
+      <div class="project-image">
+        <div class="project-image-placeholder">Measurement interaction screens</div>
+      </div>
+      <p class="project-image-caption">Familiar pattern, fewer placement errors.</p>
+    </div>
+
+    <!-- ── ANALYSIS SCREEN ── -->
+    <div class="project-section reveal">
+      <h2 class="project-section-label">Analysis Screen</h2>
+      <div class="project-image">
+        <div class="project-image-placeholder">Analysis screen designs</div>
+      </div>
+      <p class="project-image-caption">From data dump to actionable report.</p>
+    </div>
+
+    <!-- ── AR MEASUREMENT ── -->
+    <div class="project-section reveal">
+      <h2 class="project-section-label">AR Measurement</h2>
+      <div class="project-image">
+        <div class="project-image-placeholder">AR measurement flow</div>
+      </div>
+    </div>
+
+    <!-- ── AI ANALYSIS ── -->
+    <div class="project-section reveal">
+      <h2 class="project-section-label">AI Analysis</h2>
+      <div class="project-image">
+        <div class="project-image-placeholder">AI analysis screens</div>
+      </div>
+      <p class="project-image-caption">Know what's wrong. Watch yourself improve.</p>
+    </div>
+
+    <!-- ── BOTTOM NAV ── -->
+    <div class="project-bottom-nav">
+      <a href="index.html" class="btn-all-works">see all works</a>
+      <button class="btn-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">back to top</button>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <h2 class="contact-title reveal">Contact</h2>
+    <div class="footer-grid reveal">
+      <div class="footer-left">
+        <p class="footer-tagline">Feel free to reach out :)</p>
+        <a href="mailto:diana.amriyeva@gmail.com" class="f-email">diana.amriyeva@gmail.com</a>
+      </div>
+      <div class="footer-right">
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+        <a href="#">Behance</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 Diana Amriyeva. All rights reserved.</div>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

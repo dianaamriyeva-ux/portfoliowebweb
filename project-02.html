@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project 02 — Diana Amriyeva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="project.css" />
+</head>
+<body>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" id="closeMenu">✕</button>
+    <a href="index.html">works</a>
+    <a href="about.html">about</a>
+    <a href="#">art portfolio</a>
+  </div>
+
+  <nav>
+    <a href="index.html" class="logo"><span class="logo-sq"></span>D.A.</a>
+    <div class="nav-links">
+      <a href="index.html">works</a>
+      <a href="about.html">about</a>
+      <a href="#">art portfolio</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="project-main">
+
+    <div class="project-hero reveal">
+      <div class="project-hero-left">
+        <p class="project-tag">Selected Work</p>
+        <h1 class="project-title">Project 02</h1>
+        <p class="project-subtitle">Project description goes here. Replace this with a summary of the project — what it is, what problem it solves, and your role.</p>
+      </div>
+      <div class="project-meta">
+        <div class="meta-group">
+          <p class="meta-label">Year</p>
+          <p class="meta-value">2026</p>
+        </div>
+        <div class="meta-group">
+          <p class="meta-label">Disciplines</p>
+          <ul class="meta-list">
+            <li>UX/UI Design</li>
+            <li>Research</li>
+            <li>Development</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-cover reveal">
+      <div class="project-cover-placeholder">Cover image</div>
+    </div>
+
+    <div class="project-section reveal">
+      <h2 class="project-section-label">Preview</h2>
+      <div class="project-video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+          title="Project 02 Preview"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          id="previewVideo">
+        </iframe>
+        <div class="video-placeholder" id="videoPlaceholder">
+          <div class="video-play-icon"></div>
+          <span>Video Preview</span>
+          <span style="font-size:11px;opacity:0.5;">Replace YOUR_VIDEO_ID in the HTML</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-section reveal">
+      <h2 class="project-section-label">Overview</h2>
+      <p class="project-body-text">Add your project overview here. Describe the context, the challenge, and your approach.</p>
+      <div class="project-image" style="margin-top:36px;">
+        <div class="project-image-placeholder">Project image</div>
+      </div>
+    </div>
+
+    <div class="project-section reveal">
+      <h2 class="project-section-label">Process</h2>
+      <div class="project-image">
+        <div class="project-image-placeholder">Process image</div>
+      </div>
+    </div>
+
+    <div class="project-section reveal">
+      <h2 class="project-section-label">Final Design</h2>
+      <div class="project-image">
+        <div class="project-image-placeholder">Final design image</div>
+      </div>
+    </div>
+
+    <div class="project-bottom-nav">
+      <a href="index.html" class="btn-all-works">see all works</a>
+      <button class="btn-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">back to top</button>
+    </div>
+
+  </main>
+
+  <footer>
+    <h2 class="contact-title reveal">Contact</h2>
+    <div class="footer-grid reveal">
+      <div class="footer-left">
+        <p class="footer-tagline">Feel free to reach out :)</p>
+        <a href="mailto:diana.amriyeva@gmail.com" class="f-email">diana.amriyeva@gmail.com</a>
+      </div>
+      <div class="footer-right">
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+        <a href="#">Behance</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 Diana Amriyeva. All rights reserved.</div>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>
