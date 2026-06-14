@@ -270,7 +270,7 @@
 
   if (!loader) return;
 
-  const FULL_TEXT   = 'DⱯNⱯ.A';
+  const FULL_TEXT   = 'DIⱯNⱯ.A';
   const TYPE_SPEED  = 80;   /* ms per character                  */
   const PAUSE_AFTER = 700;  /* hold after fully typed            */
   const TEXT_FADE   = 600;  /* duration of text fade-out         */
