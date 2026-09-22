@@ -199,8 +199,8 @@ nav {
   bottom: 52px;
   left: 50%;
   width: 0; height: 0;
-  border: 9px solid transparent;
-  border-top: 10px solid var(--fg);
+  /*border: 9px solid transparent;
+  border-top: 10px solid var(--fg);*/
   opacity: 0;
   animation: arrowIn 1s ease 0.55s forwards, bounce 2.2s ease-in-out 1.6s infinite;
 }
