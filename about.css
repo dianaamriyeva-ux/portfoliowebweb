@@ -34,7 +34,7 @@
 }
 
 /* services */
-.services { margin-top: 16px; display: flex; flex-direction: column; gap: 20px; }
+.services { display: flex; flex-direction: column; gap: 20px; }
 .services-title {
   font-size: clamp(14px, 1.3vw, 17px);
   font-weight: 700;
