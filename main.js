@@ -270,6 +270,13 @@
 
   if (!loader) return;
 
+  /* arriving via the "works" nav link (index.html#works) — skip the intro
+     so the visitor lands straight on the works section                  */
+  if (location.hash === '#works') {
+    loader.classList.add('done');
+    return;
+  }
+
   const FULL_TEXT   = 'DIⱯNⱯ.A';
   const TYPE_SPEED  = 80;   /* ms per character                  */
   const PAUSE_AFTER = 700;  /* hold after fully typed            */

@@ -85,6 +85,67 @@
 }
 
 /* ─────────────────────────────────────────
+   EXPERIENCE + AWARDS
+───────────────────────────────────────── */
+.cv-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 120px;
+  align-items: start;
+}
+
+.cv-list { list-style: none; display: flex; flex-direction: column; }
+
+.cv-item {
+  padding: 22px 0;
+  border-top: 1px solid rgba(240, 237, 230, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cv-item:first-child { padding-top: 0; border-top: none; }
+
+.cv-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.cv-role {
+  font-size: clamp(13px, 1.2vw, 15px);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+
+.cv-date {
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  opacity: 0.6;
+}
+
+.cv-org {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.cv-desc {
+  font-size: clamp(13px, 1.1vw, 14px);
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+  max-width: 520px;
+  margin-top: 4px;
+}
+
+/* ─────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────── */
 @media (max-width: 900px) {
@@ -98,8 +159,12 @@
 
   .about-right  { gap: 28px; }
   .about-photo  { aspect-ratio: 1 / 1; }
+
+  .cv-section { grid-template-columns: 1fr; gap: 28px; margin-top: 80px; }
 }
 
 @media (max-width: 600px) {
   .about-pixel { width: 28px; height: 28px; }
+
+  .cv-head { flex-direction: column; gap: 2px; }
 }
