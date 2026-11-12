@@ -53,6 +53,7 @@
 /* photo */
 .about-photo {
   width: 50%;
+  margin-left: auto;   /* sits on the right edge of the page */
   aspect-ratio: 1 / 1;
   overflow: hidden;
   background: #111;
@@ -194,4 +195,8 @@
   .about-pixel { width: 28px; height: 28px; }
 
   .cv-head { flex-direction: column; gap: 2px; }
+
+  /* keep all tool icons on one line on phones */
+  .tools-list { gap: 8px; flex-wrap: nowrap; }
+  .tool { width: 30px; height: 30px; }
 }
