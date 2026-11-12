@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=20261112" />
-  <link rel="stylesheet" href="project.css?v=20261112" />
+  <link rel="stylesheet" href="style.css?v=20261112b" />
+  <link rel="stylesheet" href="project.css?v=20261112b" />
 </head>
 <body>
 
@@ -192,17 +192,12 @@
         <p class="project-body-text">Early versions showed raw measurements in a flat list with no clear priority. Related information about a single measurement was spread across the screen, forcing users to scroll up and down to piece it together. Cards were too text-heavy to scan quickly, and there was no grouping to separate what needed action from what was fine.</p>
       </div>
 
-      <div class="compare">
-        <div class="compare-col compare-col--wide">
+      <div class="compare compare--even">
+        <div class="compare-col">
           <p class="compare-tag">Before</p>
           <div class="screen-row">
-        <figure class="screen">
-          <img src="img/ergoscan/analysis-1.webp" alt="Version 1 of the analysis screen with a brand-coloured score bar" loading="lazy">
-          <figcaption class="screen-label">ver.1</figcaption>
-        </figure>
-        <figure class="screen">
-          <img src="img/ergoscan/analysis-2.webp" alt="Versions 2 and 3 of the analysis screen with long text cards" loading="lazy">
-          <figcaption class="screen-label">ver.2 &amp; ver.3</figcaption>
+        <figure class="screen screen--fit">
+          <img src="img/ergoscan/analysis-before.webp" alt="Earlier analysis screen: a score of 45 followed by a flat overview list of raw measurements" loading="lazy">
         </figure>
           </div>
           <ul class="compare-notes compare-notes--before">
@@ -215,8 +210,10 @@
         <div class="compare-col">
           <p class="compare-tag compare-tag--after">After</p>
           <div class="screen-row">
-        <figure class="screen">
-          <img src="img/ergoscan/analysis-3.webp" alt="Redesigned analysis screen with a semantic-colour score ring and grouped cards" loading="lazy">
+        <figure class="screen screen--video">
+          <div class="phone-frame">
+            <video src="img/ergoscan/analysis.mp4" poster="img/ergoscan/analysis-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording of the redesigned analysis screen: score ring, Needs Improvement and Good Setup groups"></video>
+          </div>
         </figure>
           </div>
           <ul class="compare-notes">
@@ -239,15 +236,15 @@
       </div>
       <div class="screen-row screen-row--3">
         <figure class="screen">
-          <img src="img/ergoscan/result-1.webp" alt="Analysis screen with a score of 60 and items that need improvement" loading="lazy">
+          <div class="phone-frame"><img src="img/ergoscan/result-score.webp" alt="Analysis screen with a score of 65, Fair setup, and the items that need improvement" loading="lazy"></div>
           <figcaption class="screen-label">Score &amp; Needs Improvement</figcaption>
         </figure>
         <figure class="screen">
-          <img src="img/ergoscan/result-2.webp" alt="Analysis screen listing the parts of the setup that are already good" loading="lazy">
-          <figcaption class="screen-label">Good Setup</figcaption>
+          <div class="phone-frame"><img src="img/ergoscan/result-saved.webp" alt="Analysis saved confirmation sheet with a View in History button" loading="lazy"></div>
+          <figcaption class="screen-label">Analysis Saved</figcaption>
         </figure>
         <figure class="screen">
-          <img src="img/ergoscan/result-3.webp" alt="History screen listing past scans and their scores" loading="lazy">
+          <div class="phone-frame"><img src="img/ergoscan/result-history.webp" alt="History screen listing past scans with colour-coded scores" loading="lazy"></div>
           <figcaption class="screen-label">Analysis History</figcaption>
         </figure>
       </div>
@@ -277,6 +274,6 @@
     <div class="footer-copy">© 2026 Diana Amriyeva. All rights reserved.</div>
   </footer>
 
-  <script src="project.js?v=20261112"></script>
+  <script src="project.js?v=20261112b"></script>
 </body>
 </html>
