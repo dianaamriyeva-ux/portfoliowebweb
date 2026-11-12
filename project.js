@@ -69,3 +69,19 @@
     entries.forEach(e => e.isIntersecting ? play() : video.pause());
   }, { threshold: 0.25 }).observe(video);
 })();
+
+
+/* ── Looping mockup videos ──
+   Play each muted autoplay video when it scrolls into view and pause it
+   when it leaves, so it always starts even if the browser held autoplay. */
+(function () {
+  const vids = document.querySelectorAll('video[autoplay]:not(#previewVideo)');
+  if (!vids.length) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { const p = e.target.play(); if (p) p.catch(() => {}); }
+      else e.target.pause();
+    });
+  }, { threshold: 0.25 });
+  vids.forEach(v => { v.muted = true; io.observe(v); });
+})();
