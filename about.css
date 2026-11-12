@@ -35,10 +35,11 @@
 
 /* services */
 .services { display: flex; flex-direction: column; gap: 20px; }
+/* same type as the "Selected Works" / "Contact" titles */
 .services-title {
-  font-size: clamp(14px, 1.3vw, 17px);
-  font-weight: 700;
-  letter-spacing: 0.28em;
+  font-size: clamp(13px, 1.3vw, 16px);
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .services-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
@@ -51,7 +52,7 @@
 
 /* photo */
 .about-photo {
-  width: 100%;
+  width: 50%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   background: #111;
@@ -97,6 +98,28 @@
 
 /* heading stays in view while the list scrolls past, filling the left column */
 .cv-section > .services-title { position: sticky; top: 110px; }
+
+/* tools — one row of equally sized icons */
+.tools-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+}
+.tool { width: 44px; height: 44px; flex-shrink: 0; }
+.tool img {
+  width: 100%; height: 100%;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+.tool:hover img { transform: translateY(-3px); }
+/* Figma's black tile disappears on the dark page — outline it so it reads the same size */
+.tool img[src$="figma.png"] {
+  border-radius: 22%;
+  box-shadow: 0 0 0 1px rgba(240, 237, 230, 0.22);
+}
 
 .cv-list { list-style: none; display: flex; flex-direction: column; }
 
