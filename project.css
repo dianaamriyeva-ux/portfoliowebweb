@@ -272,6 +272,8 @@ nav { background: #000; }
   filter: drop-shadow(0 24px 40px rgba(139, 140, 246, 0.12));
 }
 .screen-row--3 .screen { max-width: 300px; }
+/* includes the magnifier bubble, so it's wider than a bare phone */
+.screen--magnifier { max-width: 320px; }
 .screen-row--3 { gap: clamp(16px, 5vw, 80px); }
 .screen-label {
   font-size: 12px;
@@ -328,6 +330,44 @@ nav { background: #000; }
   padding-left: 24px;
   border-left: 1px solid var(--ergo);
   max-width: 620px;
+}
+
+/* ── STITCHED SCREENSHOTS (one long image + side notes) ── */
+.stitch { margin-bottom: 100px; }
+.stitch-row {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 0 40px;
+  margin: 0;
+}
+.stitch-row img {
+  width: 100%;
+  display: block;          /* no gaps between images */
+  border-radius: 0;
+}
+.stitch-note {
+  padding-top: 24px;
+  border-top: 1px solid #1f1f1f;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+  opacity: 0.65;
+}
+.stitch-row:first-child .stitch-note { border-top: none; padding-top: 0; }
+.stitch-num {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+.stitch-note strong {
+  display: block;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
 }
 
 /* ── BOTTOM NAV ── */
@@ -388,6 +428,12 @@ footer { padding: 0 var(--pad-x) 52px; }
   .footer-right { align-items: flex-start; }
 }
 @media (max-width: 900px) {
+  /* phones: keep the image unbroken, list the notes underneath */
+  .stitch { display: flex; flex-direction: column; }
+  .stitch-row { display: contents; }
+  .stitch-row img { order: 0; }
+  .stitch-note { order: 1; padding: 20px 0; border-top: 1px solid #1f1f1f; }
+  .stitch-row:first-child .stitch-note { border-top: none; padding-top: 32px; }
   .case-split { grid-template-columns: 1fr; }
   .barrier-grid { grid-template-columns: 1fr; gap: 14px; }
   .barrier { gap: 28px; }
