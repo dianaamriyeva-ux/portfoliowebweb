@@ -116,11 +116,6 @@
   transition: transform 0.25s ease;
 }
 .tool:hover img { transform: translateY(-3px); }
-/* Figma's black tile disappears on the dark page — outline it so it reads the same size */
-.tool img[src$="figma.png"] {
-  border-radius: 22%;
-  box-shadow: 0 0 0 1px rgba(240, 237, 230, 0.22);
-}
 
 .cv-list { list-style: none; display: flex; flex-direction: column; }
 
@@ -172,6 +167,9 @@
   margin-top: 4px;
 }
 
+/* contact title lines up with the other left-aligned titles (about page only) */
+.contact-title { text-align: left; }
+
 /* ─────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────── */
@@ -185,7 +183,7 @@
   }
 
   .about-right  { gap: 28px; }
-  .about-photo  { aspect-ratio: 1 / 1; }
+  .about-photo  { aspect-ratio: 1 / 1; margin: 0 auto; }   /* centred on mobile */
 
   .cv-section { grid-template-columns: 1fr; gap: 28px; margin-top: 80px; }
   .cv-section > .services-title { position: static; }
