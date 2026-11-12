@@ -251,7 +251,9 @@ nav { background: #000; }
   letter-spacing: 0.02em;
 }
 
-/* phone screens */
+/* phone screens — every phone on the page shares one width */
+.project-main { --phone-w: clamp(120px, 16vw, 232px); }
+
 .screen-row {
   display: flex;
   justify-content: center;
@@ -259,8 +261,9 @@ nav { background: #000; }
   gap: clamp(12px, 2.4vw, 36px);
 }
 .screen {
-  flex: 1 1 0;
-  max-width: 260px;
+  flex: 0 0 var(--phone-w);
+  width: var(--phone-w);
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -271,10 +274,28 @@ nav { background: #000; }
   display: block;
   filter: drop-shadow(0 24px 40px rgba(139, 140, 246, 0.12));
 }
-.screen-row--3 .screen { max-width: 300px; }
-/* includes the magnifier bubble, so it's wider than a bare phone */
-.screen--magnifier { max-width: 320px; }
 .screen-row--3 { gap: clamp(16px, 5vw, 80px); }
+
+/* includes the magnifier bubble: the phone itself is 80.2% of this image,
+   so widen the figure until the phone matches the others            */
+.screen--magnifier { flex-basis: calc(var(--phone-w) / 0.802); width: calc(var(--phone-w) / 0.802); }
+
+/* CSS phone around the screen recording, matched to the cut-out mockups */
+.phone-frame {
+  width: 100%;
+  aspect-ratio: 0.4719;
+  padding: 1.77%;
+  background: #000;
+  border-radius: 23.5% / 11.1%;
+  filter: drop-shadow(0 24px 40px rgba(139, 140, 246, 0.12));
+}
+.phone-frame video {
+  width: 100%; height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 22.5% / 10.6%;
+  background: #111;
+}
 .screen-label {
   font-size: 12px;
   font-weight: 400;
@@ -291,6 +312,7 @@ nav { background: #000; }
   align-items: start;
 }
 .compare:has(.compare-col--wide:first-child) { grid-template-columns: 1.6fr auto 1fr; }
+.compare--even { grid-template-columns: 1fr auto 1fr; }
 .compare-col { display: flex; flex-direction: column; gap: 28px; }
 .compare-tag {
   font-size: 11px;
@@ -332,20 +354,24 @@ nav { background: #000; }
   max-width: 620px;
 }
 
-/* ── STITCHED SCREENSHOTS (one long image + side notes) ── */
-.stitch { margin-bottom: 100px; }
-.stitch-row {
+/* ── MERGED SCREENSHOT + SIDE NOTES (project 2) ── */
+.stitch {
   display: grid;
   grid-template-columns: 1fr 220px;
-  gap: 0 40px;
-  margin: 0;
+  gap: 40px;
+  margin-bottom: 100px;
 }
-.stitch-row img {
+.stitch-img {
   width: 100%;
-  display: block;          /* no gaps between images */
+  height: auto;
+  display: block;
   border-radius: 0;
 }
+.stitch-notes { list-style: none; position: relative; margin: 0; padding: 0; }
 .stitch-note {
+  position: absolute;
+  top: var(--top);
+  left: 0; right: 0;
   padding-top: 24px;
   border-top: 1px solid #1f1f1f;
   font-size: 12px;
@@ -354,7 +380,7 @@ nav { background: #000; }
   letter-spacing: 0.02em;
   opacity: 0.65;
 }
-.stitch-row:first-child .stitch-note { border-top: none; padding-top: 0; }
+.stitch-note:first-child { border-top: none; padding-top: 0; }
 .stitch-num {
   display: block;
   font-size: 11px;
@@ -428,12 +454,10 @@ footer { padding: 0 var(--pad-x) 52px; }
   .footer-right { align-items: flex-start; }
 }
 @media (max-width: 900px) {
-  /* phones: keep the image unbroken, list the notes underneath */
-  .stitch { display: flex; flex-direction: column; }
-  .stitch-row { display: contents; }
-  .stitch-row img { order: 0; }
-  .stitch-note { order: 1; padding: 20px 0; border-top: 1px solid #1f1f1f; }
-  .stitch-row:first-child .stitch-note { border-top: none; padding-top: 32px; }
+  /* phones: image first, notes listed underneath */
+  .stitch { grid-template-columns: 1fr; gap: 32px; }
+  .stitch-note { position: static; padding: 20px 0; border-top: 1px solid #1f1f1f; }
+  .stitch-note:first-child { border-top: none; padding-top: 0; }
   .case-split { grid-template-columns: 1fr; }
   .barrier-grid { grid-template-columns: 1fr; gap: 14px; }
   .barrier { gap: 28px; }
@@ -442,8 +466,12 @@ footer { padding: 0 var(--pad-x) 52px; }
   .compare-arrow { transform: rotate(90deg); justify-self: center; }
   .case-outcome { margin-left: 0; }
 
-  /* five phones: swipe sideways instead of shrinking to nothing */
-  .screen-row--5 {
+  .project-main { --phone-w: 42vw; }
+  .compare--even { grid-template-columns: 1fr; }
+
+  /* rows wider than the screen: swipe sideways instead of shrinking */
+  .screen-row--5,
+  .screen-row--3 {
     justify-content: flex-start;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -451,8 +479,10 @@ footer { padding: 0 var(--pad-x) 52px; }
     padding: 0 var(--pad-x-sm) 12px;
     scrollbar-width: none;
   }
-  .screen-row--5::-webkit-scrollbar { display: none; }
-  .screen-row--5 .screen { flex: 0 0 46%; scroll-snap-align: center; }
+  .screen-row--5::-webkit-scrollbar,
+  .screen-row--3::-webkit-scrollbar { display: none; }
+  .screen-row--5 .screen,
+  .screen-row--3 .screen { scroll-snap-align: center; }
 }
 @media (max-width: 600px) {
   .project-section { margin-bottom: 64px; }
