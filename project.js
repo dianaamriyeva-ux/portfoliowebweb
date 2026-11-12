@@ -26,11 +26,11 @@
 })();
 
 
-/* ── YouTube video placeholder ──
+/* ── Video placeholder (other project pages) ──
    If the iframe src still contains YOUR_VIDEO_ID, show the
    placeholder div instead of a broken embed.               */
 (function () {
-  const iframe      = document.getElementById('previewVideo');
+  const iframe      = document.querySelector('iframe#previewVideo');
   const placeholder = document.getElementById('videoPlaceholder');
   if (!iframe || !placeholder) return;
 
@@ -40,4 +40,32 @@
   } else {
     placeholder.style.display = 'none';
   }
+})();
+
+
+/* ── Inline looping video ──
+   <video data-youtube="…"> plays the local file. If that file is missing
+   or can't load, swap in the YouTube embed so the page never shows a
+   blank box.                                                          */
+(function () {
+  const video = document.querySelector('video#previewVideo[data-youtube]');
+  if (!video) return;
+
+  function useYouTube() {
+    const iframe = document.createElement('iframe');
+    iframe.src = video.dataset.youtube;
+    iframe.title = 'ErgoScan preview';
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+    iframe.setAttribute('allowfullscreen', '');
+    video.replaceWith(iframe);
+  }
+
+  video.addEventListener('error', useYouTube, { once: true });
+  if (video.error) useYouTube();
+
+  /* some browsers block autoplay until the video is in view */
+  const play = () => { const p = video.play(); if (p) p.catch(() => {}); };
+  new IntersectionObserver(entries => {
+    entries.forEach(e => e.isIntersecting ? play() : video.pause());
+  }, { threshold: 0.25 }).observe(video);
 })();

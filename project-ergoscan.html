@@ -58,77 +58,206 @@
       </div>
     </div>
 
-    <!-- ── COVER ── -->
-    <div class="project-cover reveal">
-      <img src="img/project-1/first.png" alt="ErgoScanCover">
-      <div class="project-cover-placeholder">Cover image</div>
-    </div>
-
     <!-- ── PREVIEW VIDEO ── -->
-    <div class="project-section reveal">
-      <h2 class="project-section-label">Preview</h2>
-      <div class="project-video-wrap">
-        <!--
-          To embed your YouTube video, replace YOUR_VIDEO_ID below:
-          e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ → id is dQw4w9WgXcQ
-        -->
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/yYQ7H9uT0tk?si=tqHi-3X7vJToEGUd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <!-- Placeholder shown automatically if no valid video ID is set -->
-        
-      </div>
+    <div class="project-video reveal">
+      <!--
+        Plays inline on a loop. Put the exported video at img/ergoscan/preview.mp4.
+        Until that file exists, project.js swaps in the YouTube embed below.
+      -->
+      <video id="previewVideo" src="img/ergoscan/preview.mp4" autoplay muted loop playsinline preload="metadata"
+             data-youtube="https://www.youtube.com/embed/yYQ7H9uT0tk?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=yYQ7H9uT0tk&amp;controls=0&amp;rel=0&amp;playsinline=1"></video>
     </div>
 
-    <!-- ── THE PROBLEM ── -->
-    <div class="project-section reveal">
-      <h2 class="project-section-label">The Problem</h2>
-      <p class="project-body-text">Most people don't know their desk is hurting them. Many people spend 8+ hours a day at their desk. Without realizing it, they adjust to their setup, slouching a little more, straining a little further. The damage adds up.</p>
-      <div class="project-image" style="margin-top: 36px;">
-        <img src="img/project-1/second.png">
+    <!-- ── 01 THE PROBLEM ── -->
+    <section class="project-section case-split reveal">
+      <div class="case-intro">
+        <p class="case-step">01 — The Problem</p>
+        <h2 class="project-section-label">Most people don't know their desk is hurting them.</h2>
       </div>
-    </div>
+      <p class="project-body-text">Many people spend 8+ hours a day at their desk. Without realizing it, they adjust to their setup, slouching a little more, straining a little further. The damage adds up.</p>
+    </section>
 
-    <!-- ── USER FLOW ── -->
-    <div class="project-section reveal">
-      <h2 class="project-section-label">User Flow</h2>
-      <div class="project-image">
-        <img src="img/project-1/third.png">
-      </div>
-    </div>
+    <section class="project-section reveal">
+      <p class="case-kicker">Why people stay stuck — three barriers that keep ergonomic problems unsolved.</p>
+      <ol class="barrier-grid">
+        <li class="barrier">
+          <span class="barrier-num">01</span>
+          <p>People know bad posture is harmful, but can't identify what's wrong with their own setup.</p>
+        </li>
+        <li class="barrier">
+          <span class="barrier-num">02</span>
+          <p>Even when people want to fix it, they don't know where to start.</p>
+        </li>
+        <li class="barrier">
+          <span class="barrier-num">03</span>
+          <p>Professional assessments exist, but are too costly and inconvenient for everyday use.</p>
+        </li>
+      </ol>
+    </section>
 
-    <!-- ── MEASUREMENT INTERACTION ── -->
-    <div class="project-section reveal">
-      <h2 class="project-section-label">Measurement Interaction</h2>
-      <div class="project-image">
-        <img src="img/project-1/fourth.png">
+    <!-- ── 02 THE APPROACH ── -->
+    <section class="project-section case-split reveal">
+      <div class="case-intro">
+        <p class="case-step">02 — The Approach</p>
+        <h2 class="project-section-label">Turn the phone in your pocket into the assessment.</h2>
       </div>
-      <p class="project-image-caption">Familiar pattern, fewer placement errors.</p>
-    </div>
+      <p class="project-body-text">ErgoScan measures the workspace with AR and analyzes it with AI. The whole flow is built around one idea: give people a clear answer about their own setup and the next step to fix it, without an expert and without cost.</p>
+    </section>
 
-    <!-- ── ANALYSIS SCREEN ── -->
-    <div class="project-section reveal">
-      <h2 class="project-section-label">Analysis Screen</h2>
-      <div class="project-image">
-        <img src="img/project-1/fifth.png">
+    <section class="project-section reveal">
+      <p class="case-kicker">User flow — from the first scan to a saved result.</p>
+      <div class="project-image project-image--light">
+        <img src="img/project-1/third.png" alt="UX flow diagram: measure workspace, three AR measurement steps, quick assessment, AI ergonomic analysis, and saving results to history" loading="lazy">
       </div>
-      <p class="project-image-caption">From data dump to actionable report.</p>
-    </div>
+    </section>
 
-    <!-- ── AR MEASUREMENT ── -->
-    <div class="project-section reveal">
-      <h2 class="project-section-label">AR Measurement</h2>
-      <div class="project-image">
-        <img src="img/project-1/sixth.png">
+    <!-- ── 03 MEASURING WITH AR ── -->
+    <section class="project-section reveal">
+      <div class="case-split">
+        <div class="case-intro">
+          <p class="case-step">03 — Measuring with AR</p>
+          <h2 class="project-section-label">Three measurements, one step at a time.</h2>
+        </div>
+        <p class="project-body-text">The scan walks through viewing height, monitor distance and keyboard position, then a quick assessment adds what the camera can't see: how the wrists sit while typing and using the mouse.</p>
       </div>
-    </div>
+      <div class="screen-row screen-row--5">
+        <figure class="screen">
+          <img src="img/ergoscan/flow-1.webp" alt="Measure Workspace start screen with live camera preview" loading="lazy">
+          <figcaption class="screen-label">Start</figcaption>
+        </figure>
+        <figure class="screen">
+          <img src="img/ergoscan/flow-2.webp" alt="AR measurement of viewing height" loading="lazy">
+          <figcaption class="screen-label">Step 1 · Viewing Height</figcaption>
+        </figure>
+        <figure class="screen">
+          <img src="img/ergoscan/flow-3.webp" alt="AR measurement of monitor distance" loading="lazy">
+          <figcaption class="screen-label">Step 2 · Monitor Distance</figcaption>
+        </figure>
+        <figure class="screen">
+          <img src="img/ergoscan/flow-4.webp" alt="AR measurement of keyboard position" loading="lazy">
+          <figcaption class="screen-label">Step 3 · Keyboard Position</figcaption>
+        </figure>
+        <figure class="screen">
+          <img src="img/ergoscan/flow-5.webp" alt="Quick assessment questions about wrist posture" loading="lazy">
+          <figcaption class="screen-label">Quick Assessment</figcaption>
+        </figure>
+      </div>
+    </section>
 
-    <!-- ── AI ANALYSIS ── -->
-    <div class="project-section reveal">
-      <h2 class="project-section-label">AI Analysis</h2>
-      <div class="project-image">
-        <img src="img/project-1/seventh.png">
+    <!-- ── 04 ITERATION: MEASUREMENT ── -->
+    <section class="project-section reveal">
+      <div class="case-split">
+        <div class="case-intro">
+          <p class="case-step">04 — Iteration · Measurement Interaction</p>
+          <h2 class="project-section-label">Familiar pattern, fewer placement errors.</h2>
+        </div>
+        <p class="project-body-text">During an in-class showcase, peer testers found the free-tap method uncertain. Tapping anywhere on a small viewport made it hard to place points with confidence. The interaction didn't match anything they already knew.</p>
       </div>
-      <p class="project-image-caption">Know what's wrong. Watch yourself improve.</p>
-    </div>
+
+      <div class="compare">
+        <div class="compare-col">
+          <p class="compare-tag">Before</p>
+          <div class="screen-row">
+        <figure class="screen">
+          <img src="img/ergoscan/measure-1.webp" alt="First version: free tapping to place points inside a small camera viewport" loading="lazy">
+        </figure>
+          </div>
+          <ul class="compare-notes compare-notes--before">
+            <li>Free tap to place points</li>
+            <li>Viewport too small to aim precisely</li>
+          </ul>
+        </div>
+        <div class="compare-arrow" aria-hidden="true">→</div>
+        <div class="compare-col compare-col--wide">
+          <p class="compare-tag compare-tag--after">After user feedback</p>
+          <div class="screen-row">
+        <figure class="screen">
+          <img src="img/ergoscan/measure-2.webp" alt="Redesign: aim with a crosshair and tap plus to place a point" loading="lazy">
+        </figure>
+        <figure class="screen">
+          <img src="img/ergoscan/measure-3.webp" alt="Redesign: full-screen camera showing the measured monitor distance" loading="lazy">
+        </figure>
+          </div>
+          <ul class="compare-notes">
+            <li>Aim with a crosshair, tap + to place points</li>
+            <li>Full-screen camera</li>
+          </ul>
+        </div>
+      </div>
+      <p class="project-body-text case-outcome">Switched to a crosshair + plus button pattern and expanded the camera to full screen. Users already know this from iPhone's Measure app, so there is no learning curve and fewer misplaced points.</p>
+    </section>
+
+    <!-- ── 05 ITERATION: ANALYSIS ── -->
+    <section class="project-section reveal">
+      <div class="case-split">
+        <div class="case-intro">
+          <p class="case-step">05 — Iteration · Analysis Screen</p>
+          <h2 class="project-section-label">From data dump to actionable report.</h2>
+        </div>
+        <p class="project-body-text">Early versions showed raw measurements in a flat list with no clear priority. Related information about a single measurement was spread across the screen, forcing users to scroll up and down to piece it together. Cards were too text-heavy to scan quickly, and there was no grouping to separate what needed action from what was fine.</p>
+      </div>
+
+      <div class="compare">
+        <div class="compare-col compare-col--wide">
+          <p class="compare-tag">Before</p>
+          <div class="screen-row">
+        <figure class="screen">
+          <img src="img/ergoscan/analysis-1.webp" alt="Version 1 of the analysis screen with a brand-coloured score bar" loading="lazy">
+          <figcaption class="screen-label">ver.1</figcaption>
+        </figure>
+        <figure class="screen">
+          <img src="img/ergoscan/analysis-2.webp" alt="Versions 2 and 3 of the analysis screen with long text cards" loading="lazy">
+          <figcaption class="screen-label">ver.2 &amp; ver.3</figcaption>
+        </figure>
+          </div>
+          <ul class="compare-notes compare-notes--before">
+            <li>Colour based on brand, not status</li>
+            <li>Incorrect grouping</li>
+            <li>Too much text per card</li>
+          </ul>
+        </div>
+        <div class="compare-arrow" aria-hidden="true">→</div>
+        <div class="compare-col">
+          <p class="compare-tag compare-tag--after">After</p>
+          <div class="screen-row">
+        <figure class="screen">
+          <img src="img/ergoscan/analysis-3.webp" alt="Redesigned analysis screen with a semantic-colour score ring and grouped cards" loading="lazy">
+        </figure>
+          </div>
+          <ul class="compare-notes">
+            <li>Score at a glance with semantic colour</li>
+            <li>Needs Improvement surfaces first</li>
+            <li>All info for one measurement in one card</li>
+          </ul>
+        </div>
+      </div>
+      <p class="project-body-text case-outcome">Replaced brand colours with semantic colour: green, yellow, and red map directly to good, fair, and poor. Results are grouped into Needs Improvement and Good Setup. Qualitative labels replace raw numbers. Good states show only a short confirmation. Detail appears only where action is needed.</p>
+    </section>
+
+    <!-- ── 06 THE RESULT ── -->
+    <section class="project-section reveal">
+      <div class="case-split">
+        <div class="case-intro">
+          <p class="case-step">06 — The Result · AI Analysis</p>
+          <h2 class="project-section-label">Know what's wrong. Watch yourself improve.</h2>
+        </div>
+        <p class="project-body-text">Every scan ends with a score, a short list of what to fix first and what is already working. Saved results build a history, so each change to the desk shows up as a better score.</p>
+      </div>
+      <div class="screen-row screen-row--3">
+        <figure class="screen">
+          <img src="img/ergoscan/result-1.webp" alt="Analysis screen with a score of 60 and items that need improvement" loading="lazy">
+          <figcaption class="screen-label">Score &amp; Needs Improvement</figcaption>
+        </figure>
+        <figure class="screen">
+          <img src="img/ergoscan/result-2.webp" alt="Analysis screen listing the parts of the setup that are already good" loading="lazy">
+          <figcaption class="screen-label">Good Setup</figcaption>
+        </figure>
+        <figure class="screen">
+          <img src="img/ergoscan/result-3.webp" alt="History screen listing past scans and their scores" loading="lazy">
+          <figcaption class="screen-label">Analysis History</figcaption>
+        </figure>
+      </div>
+    </section>
 
     <!-- ── BOTTOM NAV ── -->
     <div class="project-bottom-nav">
