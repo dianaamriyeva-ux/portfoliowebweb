@@ -270,7 +270,7 @@
 
   if (!loader) return;
 
-  /* arriving via the "works" nav link (index.html#works) — skip the intro
+  /* arriving via the "works" nav link (works) — skip the intro
      so the visitor lands straight on the works section                  */
   if (location.hash === '#works') {
     loader.classList.add('done');

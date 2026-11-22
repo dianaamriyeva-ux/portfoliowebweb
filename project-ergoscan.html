@@ -10,24 +10,26 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=20261112c" />
-  <link rel="stylesheet" href="project.css?v=20261112c" />
+  <link rel="stylesheet" href="style.css?v=20261122" />
+  <link rel="stylesheet" href="project.css?v=20261122" />
 </head>
 <body>
 
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobileMenu">
     <button class="close-btn" id="closeMenu">✕</button>
-    <a href="index.html#works">works</a>
-    <a href="about.html">about</a>
+    <a href="works">works</a>
+    <a href="about">about</a>
+    <a href="#contact">contact</a>
   </div>
 
   <!-- NAV -->
   <nav>
-    <a href="index.html" class="logo">DIⱯNⱯ.A</a>
+    <a href="home" class="logo">DIⱯNⱯ.A</a>
     <div class="nav-links">
-      <a href="index.html#works">works</a>
-      <a href="about.html">about</a>
+      <a href="works">works</a>
+      <a href="about">about</a>
+      <a href="#contact">contact</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -266,14 +268,14 @@
 
     <!-- ── BOTTOM NAV ── -->
     <div class="project-bottom-nav">
-      <a href="index.html#works" class="btn-all-works">see all works</a>
+      <a href="works" class="btn-all-works">see all works</a>
       <button class="btn-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">back to top</button>
     </div>
 
   </main>
 
   <!-- FOOTER -->
-  <footer>
+  <footer id="contact">
     <h2 class="contact-title reveal">Contact</h2>
     <div class="footer-grid reveal">
       <div class="footer-left">
@@ -288,6 +290,8 @@
     <div class="footer-copy">© 2026 Diana Amriyeva. All rights reserved.</div>
   </footer>
 
-  <script src="project.js?v=20261112c"></script>
+  <script src="project.js?v=20261122"></script>
+
+  <script src="nav.js?v=20261122"></script>
 </body>
 </html>
