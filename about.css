@@ -26,10 +26,9 @@
 }
 
 .about-bio {
-  font-size: clamp(13px, 1.2vw, 15px);
+  font-size: 16px;
   font-weight: 300;
   line-height: 1.85;
-  letter-spacing: 0.02em;
   max-width: 440px;
 }
 
@@ -37,16 +36,14 @@
 .services { display: flex; flex-direction: column; gap: 20px; }
 /* same type as the "Selected Works" / "Contact" titles */
 .services-title {
-  font-size: clamp(13px, 1.3vw, 16px);
+  font-size: 24px;
   font-weight: 500;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .services-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
 .services-list li {
-  font-size: clamp(13px, 1.15vw, 15px);
+  font-size: 16px;
   font-weight: 300;
-  letter-spacing: 0.03em;
   line-height: 1.6;
 }
 
@@ -70,20 +67,6 @@
 .photo-placeholder {
   width: 100%; height: 100%;
   background: repeating-linear-gradient(135deg, #111 0 12px, #141414 12px 24px);
-}
-
-/* artist callout */
-.artist-text {
-  font-size: clamp(13px, 1.15vw, 15px);
-  font-weight: 300;
-  line-height: 1.75;
-  letter-spacing: 0.02em;
-  max-width: 360px;
-}
-
-/* pill button — extends base .btn-pill from style.css */
-.btn-artworks {
-  padding: 13px 40px;
 }
 
 /* ─────────────────────────────────────────
@@ -136,34 +119,30 @@
 }
 
 .cv-role {
-  font-size: clamp(13px, 1.2vw, 15px);
+  font-size: 18px;
   font-weight: 500;
-  letter-spacing: 0.03em;
   line-height: 1.5;
 }
 
 .cv-date {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
-  letter-spacing: 0.08em;
   white-space: nowrap;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .cv-org {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .cv-desc {
-  font-size: clamp(13px, 1.1vw, 14px);
+  font-size: 16px;
   font-weight: 300;
   line-height: 1.75;
-  letter-spacing: 0.02em;
-  max-width: 520px;
+  max-width: 650px;
   margin-top: 4px;
 }
 
